@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@600&family=Share+Tech+Mono&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Share Tech Mono', monospace;
+}
+body {
+    position: relative;
+    background-color: #111;
+    min-height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: grid;
+    place-items: center;
+    & .box{
+        width: 45%;
+        height: 45%;
+        clip-path: polygon(10% 0, 0 15%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 100% 0%, 100% 0);
+        position: relative;
+       isolation: isolate;
+       /* -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,rgb(192, 61, 61)) ;*/
+        &::after,&::before{
+            position: absolute;
+            content: "";
+            inset: 0;
+        }
+        &::before{
+          background-image: radial-gradient(rgb(1, 9, 47),pink);
+           z-index: -2;
+        }
+        &::after{
+            background-color: #652;
+            z-index: -1;
+            clip-path: polygon(20% 0, 0 18%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 90% 0%, 90% 0);
+        }
+        & .circle{
+            position: absolute;
+            left: 8%;
+            top: 8%;
+            background-color: yellow;
+            outline-offset: 6px;
+            outline: 3px solid yellow;
+            width: 3vmax;
+            height: 3vmax;
+            border-radius: 100vmax;
+            z-index: 1;
+            animation: mv 2s linear infinite; 
+        }
+    }
+    
+  }
+  @keyframes mv {
+    12.5% {
+     
+      outline-color: rgb(255, 106, 0);
+      background-color: rgb(255, 106, 0);
+    }
+    37.5% {
+     
+      background-color: yellow;
+
+      outline: 3px solid yellow;
+    }
+    62.5% {
+     
+      background-color: yellow;
+
+      outline: 3px solid yellow;
+    }
+    82.5% {
+     
+      background-color: yellow;
+
+      outline: 3px solid yellow;
+    }
+  }
+  @keyframes bgbeat {
+    12.5% {
+      background-color: rgb(2, 11, 64);
+    }
+  }
