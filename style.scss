@@ -7,84 +7,129 @@
 }
 body {
     position: relative;
-    background-color: #111;
+    background-size: 400%;
+    background-image: linear-gradient(-15deg,#000000,#D4EBF8);
     min-height: 100vh;
     width: 100vw;
     overflow: hidden;
     display: grid;
     place-items: center;
-    & .box{
-        width: 45%;
-        height: 45%;
-        clip-path: polygon(10% 0, 0 15%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 100% 0%, 100% 0);
-        position: relative;
-       isolation: isolate;
-       /* -webkit-box-reflect: below 0px linear-gradient(transparent,transparent,rgb(192, 61, 61)) ;*/
-        &::after,&::before{
+    animation: bgMove 20s ease-in-out infinite alternate;
+    & #play{
+      position: absolute;
+      right: 2vw;
+      top: 0vh;
+      cursor: pointer;
+    }
+    & #container{
+      @extend body;
+      background-image: none;
+      min-height: 70vh;
+      & #title{
+        font-style: italic;
+      }
+      & .box{
+          width: 45%;
+          height: 65%;
+          clip-path: polygon(10% 0, 0 15%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 100% 0%, 100% 0);
+          position: relative;
+         isolation: isolate;
+          &::after,&::before{
+              position: absolute;
+              content: "";
+              inset: 0;
+          }
+          &::before{
+            background-image: linear-gradient(-25deg,#3D4F72,#000000);
+             z-index: -2;
+          }
+          &::after{
+            background-image: linear-gradient(-8deg,#000000,#D4EBF8);
+              z-index: -1;
+              clip-path: polygon(10% 8%, 8% 18%, 0% 100%, 8% 100%, 0% 100%, 92% 92%, 100% 0%, 100% 0%);
+              /*clip-path: polygon筆記
+        第1組 上面邊框寬、上面邊的高
+       第2組  左邊邊框寬、左邊邊框下來的程度
+       第3組  左邊邊框往右的程度、左邊邊框中間突起的下來程度
+       第4組  左下角往右的程度、左下角下來的程度
+      第5組  下面邊框寬、下面邊的高
+      第6組  右邊邊框寬、右下角上來的程度
+     第7組  右邊邊框往右的程度、右邊邊框的高
+     第8組  上面邊框往右的程度、右上角下來的程度
+    */
+          }
+          & .bar{
             position: absolute;
-            content: "";
-            inset: 0;
-        }
-        &::before{
-          background-image: radial-gradient(rgb(1, 9, 47),pink);
-           z-index: -2;
-        }
-        &::after{
-            background-color: #652;
-            z-index: -1;
-            clip-path: polygon(20% 0, 0 18%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 90% 0%, 90% 0);
-        }
-        & .bar{
-          position: absolute;
-            left: 10%;
-            top: 8%;
-            width: 80%;
-            height: 1vh;
-            background-color: khaki;
-        }
-        & .circle{
+              left: 12%;
+              top: 12%;
+              width: 80%;
+              height: 1vh;
+              background-color: #000000;
+             & .time{
+              background-color: #3D4F72;
+              width: 0%;
+              position: absolute;
+              height: 1vh;
+              
+             }
+             & .icon{
+              position: absolute;
+             top: calc(12% - 0.75vmax + 0.5vh);
+             left: 0%;
+              background-color: #00E4FF;
+              width: 1.2vmax;
+              height: 1.5vmax;
+              clip-path: polygon(100% 80%, 100% 0, 0 0, 0 80%, 50% 100%);
+             
+             
+          }
+          }
+          & #info{
             position: absolute;
-            left: 10%;
-            top: 8%;
-            background-color: yellow;
-            outline-offset: 6px;
-            outline: 3px solid yellow;
-            width: 2vmax;
-            height: 2vmax;
-            border-radius: 100vmax;
-            z-index: 1;
-            animation: beats 2s linear infinite; 
-        }
+            left: 18%;
+            top: 40%;
+            font-style: italic;
+          }
+      }
     }
     
+    
+  }
+  /*節奏時間要用1分鐘除以bpm再乘以4(如果以4拍當節拍基準的話)*/
+  @keyframes progress {
+    25% {
+      width: 25%;
+     }
+     50% {
+      width: 50%;
+     }
+     75% {
+      width: 75%;
+     }
+     100% {
+      width: 100%;
+     }
   }
   @keyframes beats {
-    12.5% {
-     left: 20%;
-      outline-color: rgb(255, 106, 0);
-      background-color: rgb(255, 106, 0);
+    25% {
+     left: 25%;
     }
-    37.5% {
-     left: 40%;
-      background-color: yellow;
-
-      outline: 3px solid yellow;
+    50% {
+     left: 50%;
     }
-    62.5% {
-     left: 60%;
-      background-color: yellow;
-
-      outline: 3px solid yellow;
+    75% {
+     left: 75%;
     }
-    82.5% {
-     left: 80%;
-      background-color: yellow;
-
-      outline: 3px solid yellow;
+    100% {
+     left: 93.5%; 
     }
   }
   @keyframes bgcolor {
     12.5% {
       background-color: rgb(2, 11, 64);
     }
+  }
+  @keyframes bgMove {
+    from{background-position: 0% 0%;}
+    to{background-position: 100% 100%;}
   }
