@@ -19,19 +19,30 @@
     />
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
-    <title>Tempo!</title>
+    <title>Music player</title>
   </head>
   <body>
-    <div id="play" class="tech-h3">&#9658;</div>
     <div id="container" class="tech-container">
-      <div id="title" class="tech-h3">Where`s your beat?..</div>
       <div class="box">
+        <div id="title" class="tech-h2">Play music..</div>
+        <section class="play-btns">
+          <div id="prev" class="tech-h3">&#8810;</div>
+          <div id="play" class="tech-h2">&#9658;</div>
+          <div id="next" class="tech-h3">&#8811;</div>
+        </section>
         <div class="bar">
+          <section class="time-words">
+            <span class="current-time tech-h6"></span>
+            <span class="song-duration tech-h6"></span>
+          </section>
           <div class="time"></div>
-
           <div class="icon"></div>
         </div>
-        <div id="info" class="tech-h6"></div>
+        <section class="other-btns">
+          <div id="minus" class="tech-h2">&#45;</div>
+          <div id="loop" class="tech-h4">loop</div>
+          <div id="plus" class="tech-h2">&#43;</div>
+        </section>
       </div>
     </div>
   </body>

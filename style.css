@@ -7,34 +7,25 @@
   font-family: "Share Tech Mono", monospace;
 }
 
-body, body #container {
-  position: relative;
-  background-size: 400%;
+body {
+  background-size: 300%;
   background-image: linear-gradient(-15deg, #000000, #D4EBF8);
   min-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  display: grid;
-  place-items: center;
-  -webkit-animation: bgMove 20s ease-in-out infinite alternate;
-          animation: bgMove 20s ease-in-out infinite alternate;
-}
-body #play {
-  position: absolute;
-  right: 2vw;
-  top: 0vh;
-  cursor: pointer;
+  -webkit-animation: bgMove 8s ease-in infinite alternate;
+          animation: bgMove 8s ease-in infinite alternate;
 }
 body #container {
-  background-image: none;
-  min-height: 70vh;
-}
-body #container #title {
-  font-style: italic;
+  width: 100%;
 }
 body #container .box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
   width: 45%;
-  height: 65%;
+  height: 55vh;
   -webkit-clip-path: polygon(10% 0, 0 15%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 100% 0%, 100% 0);
           clip-path: polygon(10% 0, 0 15%, 0 100%, 0% 100%, 90% 100%, 100% 85%, 100% 0%, 100% 0);
   position: relative;
@@ -66,103 +57,145 @@ body #container .box::after {
   */
 }
 body #container .box .bar {
-  position: absolute;
-  left: 12%;
-  top: 12%;
-  width: 80%;
+  position: relative;
+  width: 75%;
   height: 1vh;
   background-color: #000000;
 }
+body #container .box .bar .time-words {
+  position: absolute;
+  width: 100%;
+  top: 2vh;
+  display: flex;
+  justify-content: space-between;
+}
+body #container .box .bar .time-words .current-time {
+  text-align: start;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+body #container .box .bar .time-words .song-duration {
+  text-align: end;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
 body #container .box .bar .time {
-  background-color: #3D4F72;
+  background-color: #00E4FF;
   width: 0%;
   position: absolute;
   height: 1vh;
 }
 body #container .box .bar .icon {
   position: absolute;
-  top: calc(12% - 0.75vmax + 0.5vh);
+  top: -1vh;
   left: 0%;
   background-color: #00E4FF;
-  width: 1.2vmax;
-  height: 1.5vmax;
-  -webkit-clip-path: polygon(100% 80%, 100% 0, 0 0, 0 80%, 50% 100%);
-          clip-path: polygon(100% 80%, 100% 0, 0 0, 0 80%, 50% 100%);
+  width: 1.5vw;
+  height: 3vh;
+  -webkit-clip-path: polygon(80% 50%, 90% 10%, 60% 0, 0 35%, 10% 60%, 50% 100%);
+          clip-path: polygon(80% 50%, 90% 10%, 60% 0, 0 35%, 10% 60%, 50% 100%);
 }
-body #container .box #info {
-  position: absolute;
-  left: 18%;
-  top: 40%;
+body #container .box #title {
   font-style: italic;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+body #container .box .play-btns {
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body #container .box .play-btns #play, body #container .box .play-btns #next, body #container .box .play-btns #prev {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+body #container .box .other-btns {
+  width: 70%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+body #container .box .other-btns #plus, body #container .box .other-btns #minus, body #container .box .other-btns #loop {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+body #container .box .other-btns #loop {
+  font-style: italic;
+  /*border-block-start:4px solid ;
+   border-inline-end: 3px solid;
+   border-block-end:2px solid ;
+   border-inline-start:1px solid;
+  border-image-source:linear-gradient(90deg,#00e4ff,transparent);
+  border-image-slice: 1;
+  animation: bor 2s linear infinite ;*/
+}
+@-webkit-keyframes bor {
+  0% {
+    border-image-source: linear-gradient(90deg, #00e4ff, transparent);
+  }
+  50% {
+    border-image-source: linear-gradient(180deg, #00e4ff, transparent);
+  }
+  100% {
+    border-image-source: linear-gradient(360deg, #00e4ff, transparent);
+  }
+}
+@keyframes bor {
+  0% {
+    border-image-source: linear-gradient(90deg, #00e4ff, transparent);
+  }
+  50% {
+    border-image-source: linear-gradient(180deg, #00e4ff, transparent);
+  }
+  100% {
+    border-image-source: linear-gradient(360deg, #00e4ff, transparent);
+  }
 }
 
 /*節奏時間要用1分鐘除以bpm再乘以4(如果以4拍當節拍基準的話)*/
-@-webkit-keyframes progress {
-  25% {
-    width: 25%;
-  }
-  50% {
-    width: 50%;
-  }
-  75% {
-    width: 75%;
-  }
-  100% {
-    width: 100%;
-  }
-}
+/*
 @keyframes progress {
   25% {
     width: 25%;
-  }
-  50% {
+   }
+   50% {
     width: 50%;
-  }
-  75% {
+   }
+   75% {
     width: 75%;
-  }
-  100% {
+   }
+   100% {
     width: 100%;
-  }
-}
-@-webkit-keyframes beats {
-  25% {
-    left: 25%;
-  }
-  50% {
-    left: 50%;
-  }
-  75% {
-    left: 75%;
-  }
-  100% {
-    left: 93.5%;
-  }
+   }
 }
 @keyframes beats {
   25% {
-    left: 25%;
+   left: 25%;
   }
   50% {
-    left: 50%;
+   left: 50%;
   }
   75% {
-    left: 75%;
+   left: 75%;
   }
   100% {
-    left: 93.5%;
+   left: 93.5%; 
   }
 }
-@-webkit-keyframes bgcolor {
-  12.5% {
-    background-color: rgb(2, 11, 64);
-  }
-}
-@keyframes bgcolor {
-  12.5% {
-    background-color: rgb(2, 11, 64);
-  }
-}
+*/
 @-webkit-keyframes bgMove {
   from {
     background-position: 0% 0%;
