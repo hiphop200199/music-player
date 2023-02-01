@@ -15,6 +15,14 @@ body {
     animation: bgMove 8s ease-in infinite alternate;
     & #container{
       width: 100%;
+      & .bye{
+        position: absolute;
+        right: 3vw;
+        top: 2vh;
+        user-select: none;
+        cursor: pointer;
+        font-style: italic;
+      }
       & .box{
           display: flex;
           flex-direction: column;
@@ -172,4 +180,14 @@ body {
   @keyframes bgMove {
     from{background-position: 0% 0%;}
     to{background-position: 100% 100%;}
+  }
+  @keyframes rot {
+    from {
+      
+      transform: rotate(0turn) scale(1);
+    }
+    to {
+     
+      transform: rotate(5turn) scale(0);
+    }
   }

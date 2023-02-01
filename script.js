@@ -1,23 +1,17 @@
 document.addEventListener("DOMContentLoaded",()=>{
    
-    const songs=[{name:"少女",url:"/songs/少女.mp3"},{name:"心酸",url:"/songs/心酸.mp3"},{name:"成全",url:"/songs/成全.mp3"},{name:"伯樂",url:"/songs/伯樂.mp3"},{name:"背影",url:"/songs/背影.mp3"},{name:"時光腳步聲",url:"/songs/時光腳步聲.mp3"},{name:"浪費",url:"/songs/浪費.mp3"},{name:"神秘嘉賓"},{name:"連名帶姓",url:"/songs/連名帶姓.mp3"},{name:"想自由",url:"/songs/想自由.mp3"},{name:"感同身受",url:"/songs/感同身受.mp3"},{name:"說謊",url:"/songs/說謊.mp3"},{name:"cinematicMelody",url:"/songs/cinematicMelody.mp3"},{name:"FirstLove",url:"/songs/FirstLove.mp3"},{name:'LaLaLaLoveSong',url:"/songs/LaLaLaLoveSong.mp3"},{name:"Levitating",url:"/songs/Levitating.mp3"},{name:"LoveMeLikeYouDo",url:"/songs/LoveMeLikeYouDo.mp3"},{name:"pianoMoment",url:"/songs/pianoMoment.mp3"},{name:"SaveYourTears",url:"/songs/SaveYourTears.mp3"},{name:"Sugar",url:"/songs/Sugar.mp3"}];
-    function checkAudioEnded(){
-        if(player.ended){
-            playBtn.innerHTML=`&#9658`;
-            timeBar.style.width=`0%`;
-            timeIcon.style.left=`0%`;
-            return true;
-        }
-        return false;
-    }
+    const songs=[{name:"少女",url:"/songs/少女.mp3"},{name:"心酸",url:"/songs/心酸.mp3"},{name:"成全",url:"/songs/成全.mp3"},{name:"伯樂",url:"/songs/伯樂.mp3"},{name:"背影",url:"/songs/背影.mp3"},{name:"時光腳步聲",url:"/songs/時光腳步聲.mp3"},{name:"浪費",url:"/songs/浪費.mp3"},{name:"神秘嘉賓",url:"/songs/神秘嘉賓.mp3"},{name:"連名帶姓",url:"/songs/連名帶姓.mp3"},{name:"想自由",url:"/songs/想自由.mp3"},{name:"感同身受",url:"/songs/感同身受.mp3"},{name:"說謊",url:"/songs/說謊.mp3"},{name:"cinematicMelody",url:"/songs/cinematicMelody.mp3"},{name:"FirstLove",url:"/songs/FirstLove.mp3"},{name:'LaLaLaLoveSong',url:"/songs/LaLaLaLoveSong.mp3"},{name:"Levitating",url:"/songs/Levitating.mp3"},{name:"LoveMeLikeYouDo",url:"/songs/LoveMeLikeYouDo.mp3"},{name:"pianoMoment",url:"/songs/pianoMoment.mp3"},{name:"SaveYourTears",url:"/songs/SaveYourTears.mp3"},{name:"Sugar",url:"/songs/Sugar.mp3"}];
     let trackIndex=0;
+    let timeUnit;
     let player=new Audio(songs[trackIndex]["url"]);
+    const whole=document.body;
     const prevBtn=document.getElementById("prev");
     const nextBtn=document.getElementById("next");
     const playBtn=document.getElementById("play");
     const loopBtn=document.getElementById("loop");
     const plusBtn=document.getElementById("plus");
     const minusBtn=document.getElementById("minus");
+    const byeBtn=document.querySelector(".bye");
     let currentTime=document.querySelector(".current-time");
     let songDuration=document.querySelector(".song-duration");
     let message=document.getElementById("title");
@@ -32,16 +26,42 @@ document.addEventListener("DOMContentLoaded",()=>{
     
         return mins + ':' + secs;
     }
-  
-playBtn.addEventListener("click",function(){
-     let timeUnit=100/(Math.floor(player.duration));
-     songDuration.innerText=convertTime(player.duration);
-     setInterval(()=>{
+    function checkAudioEnded(){
+        if(player.ended){
+            playBtn.innerHTML=`&#9658`;
+            timeBar.style.width=`0%`;
+            timeIcon.style.left=`0%`;
+            
+        }
+        
+    }
+    function getTime(){
+        timeUnit=100/(Math.floor(player.duration));
         currentTime.innerText=convertTime(player.currentTime);
+        songDuration.innerText=convertTime(player.duration);
         timeBar.style.width=`${timeUnit * player.currentTime}%`;
         timeIcon.style.left=`${timeUnit * player.currentTime}%`;
         checkAudioEnded();
-    },1000);
+    };
+   let musicInterval=setInterval(getTime,1000);
+   musicInterval;
+   byeBtn.addEventListener("click",function(){
+        player.pause();
+        clearInterval(musicInterval);
+        message.innerText="Good bye!";
+        setTimeout(()=>{
+            whole.style.background="none";
+        },1000);
+        setTimeout(()=>{
+            whole.style.animation="rot 2s cubic-bezier(1, -0.61, 0, 0.99) forwards";
+        },2000);
+        setTimeout(()=>{
+            location.href="https://www.google.com.tw/?hl=zh_TW";
+        },6000);
+   });
+playBtn.addEventListener("click",function(){
+     
+     
     if(player.paused)  {
    
     playBtn.innerText="||";
@@ -57,7 +77,7 @@ playBtn.addEventListener("click",function(){
     }
 });
 nextBtn.addEventListener("click",function(){
-    if(trackIndex==songs.length-1){
+      if(trackIndex==songs.length-1){
         player.pause();
         playBtn.innerHTML=`&#9658`;
         trackIndex=0;
@@ -72,6 +92,7 @@ nextBtn.addEventListener("click",function(){
     }
 });
 prevBtn.addEventListener("click",function(){
+    
     if(trackIndex==0){
         player.pause;
         playBtn.innerHTML=`&#9658`;

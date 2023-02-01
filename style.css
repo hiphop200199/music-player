@@ -19,6 +19,17 @@ body {
 body #container {
   width: 100%;
 }
+body #container .bye {
+  position: absolute;
+  right: 3vw;
+  top: 2vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-style: italic;
+}
 body #container .box {
   display: flex;
   flex-direction: column;
@@ -210,5 +221,21 @@ body #container .box .other-btns #loop {
   }
   to {
     background-position: 100% 100%;
+  }
+}
+@-webkit-keyframes rot {
+  from {
+    transform: rotate(0turn) scale(1);
+  }
+  to {
+    transform: rotate(5turn) scale(0);
+  }
+}
+@keyframes rot {
+  from {
+    transform: rotate(0turn) scale(1);
+  }
+  to {
+    transform: rotate(5turn) scale(0);
   }
 }/*# sourceMappingURL=style.css.map */
