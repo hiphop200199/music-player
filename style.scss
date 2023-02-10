@@ -61,11 +61,11 @@ body {
               position: relative;
               width: 75%;
               height: 1vh;
-              background-color: #000000;
+              /*background-color: #000000;*/
               & .time-words{
                 position: absolute;
                 width: 100%;
-                top: 2vh;
+                top: 4vh;
                 display: flex;
                 justify-content: space-between;
                 & .current-time{
@@ -93,6 +93,26 @@ body {
               clip-path: polygon(80% 50%, 90% 10%, 60% 0, 0 35%, 10% 60%,50% 100%);
              
              
+          }
+          & #time-bar{
+            position: absolute;
+            width: 100%;
+            appearance: none;
+            background-color: transparent;
+            &::-webkit-slider-runnable-track{
+              width: 100%;
+              height: 1vmax;
+              border: 1.5px solid #00E4FF;
+            }
+            &::-webkit-slider-thumb{
+              height: 2.5vmax;
+              width: 2vmax;
+              translate: 0 -0.75vmax;
+              clip-path: polygon(58% 0, 0 35%, 39% 99%, 100% 21%);
+            background-color: #00E4FF;
+              cursor: pointer;
+            -webkit-appearance: none;
+            }
           }
           }
           

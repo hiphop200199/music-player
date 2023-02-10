@@ -13,8 +13,7 @@ body {
   min-height: 100vh;
   width: 100vw;
   overflow: hidden;
-  -webkit-animation: bgMove 8s ease-in infinite alternate;
-          animation: bgMove 8s ease-in infinite alternate;
+  animation: bgMove 8s ease-in infinite alternate;
 }
 body #container {
   width: 100%;
@@ -25,7 +24,6 @@ body #container .bye {
   top: 2vh;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   font-style: italic;
@@ -71,12 +69,12 @@ body #container .box .bar {
   position: relative;
   width: 75%;
   height: 1vh;
-  background-color: #000000;
+  /*background-color: #000000;*/
 }
 body #container .box .bar .time-words {
   position: absolute;
   width: 100%;
-  top: 2vh;
+  top: 4vh;
   display: flex;
   justify-content: space-between;
 }
@@ -84,14 +82,12 @@ body #container .box .bar .time-words .current-time {
   text-align: start;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 body #container .box .bar .time-words .song-duration {
   text-align: end;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 body #container .box .bar .time {
@@ -110,11 +106,33 @@ body #container .box .bar .icon {
   -webkit-clip-path: polygon(80% 50%, 90% 10%, 60% 0, 0 35%, 10% 60%, 50% 100%);
           clip-path: polygon(80% 50%, 90% 10%, 60% 0, 0 35%, 10% 60%, 50% 100%);
 }
+body #container .box .bar #time-bar {
+  position: absolute;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: transparent;
+}
+body #container .box .bar #time-bar::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 1vmax;
+  border: 1.5px solid #00E4FF;
+}
+body #container .box .bar #time-bar::-webkit-slider-thumb {
+  height: 2.5vmax;
+  width: 2vmax;
+  translate: 0 -0.75vmax;
+  -webkit-clip-path: polygon(58% 0, 0 35%, 39% 99%, 100% 21%);
+          clip-path: polygon(58% 0, 0 35%, 39% 99%, 100% 21%);
+  background-color: #00E4FF;
+  cursor: pointer;
+  -webkit-appearance: none;
+}
 body #container .box #title {
   font-style: italic;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 body #container .box .play-btns {
@@ -127,7 +145,6 @@ body #container .box .play-btns #play, body #container .box .play-btns #next, bo
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 body #container .box .other-btns {
@@ -140,7 +157,6 @@ body #container .box .other-btns #plus, body #container .box .other-btns #minus,
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 body #container .box .other-btns #loop {
@@ -152,17 +168,6 @@ body #container .box .other-btns #loop {
   border-image-source:linear-gradient(90deg,#00e4ff,transparent);
   border-image-slice: 1;
   animation: bor 2s linear infinite ;*/
-}
-@-webkit-keyframes bor {
-  0% {
-    border-image-source: linear-gradient(90deg, #00e4ff, transparent);
-  }
-  50% {
-    border-image-source: linear-gradient(180deg, #00e4ff, transparent);
-  }
-  100% {
-    border-image-source: linear-gradient(360deg, #00e4ff, transparent);
-  }
 }
 @keyframes bor {
   0% {
@@ -207,28 +212,12 @@ body #container .box .other-btns #loop {
   }
 }
 */
-@-webkit-keyframes bgMove {
-  from {
-    background-position: 0% 0%;
-  }
-  to {
-    background-position: 100% 100%;
-  }
-}
 @keyframes bgMove {
   from {
     background-position: 0% 0%;
   }
   to {
     background-position: 100% 100%;
-  }
-}
-@-webkit-keyframes rot {
-  from {
-    transform: rotate(0turn) scale(1);
-  }
-  to {
-    transform: rotate(5turn) scale(0);
   }
 }
 @keyframes rot {
