@@ -142,8 +142,6 @@ loopBtn.addEventListener("click",function(){
     }
 });
 timeRangeBar.addEventListener("change",function(){
-    playBtn.innerHTML=`&#9658`;
-    player.pause();
     player.currentTime=timeRangeBar.value;
 });
 
